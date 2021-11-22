@@ -99,7 +99,7 @@ let test
                 <hr>
                 <div class="damage-immunities">Damage Immunities: ${list(monster.damage_immunities)}</div>
                 <hr>
-                <div class="condition_immunities">Condition Immunities: ${list(monster.condition_immunities)}</div>
+                <div class="condition_immunities">Condition Immunities: ${cond(monster.condition_immunities)}</div>
                 <hr>
                 <div class="senses">Senses: ${obj(monster.senses)}</div>
                 <hr>
@@ -168,6 +168,14 @@ const prof = (o) => {
     let res = ''
     for(let i = 0; i < o.length; i++){
         res += `<li>${o[i].proficiency.name}</li>`
+    }
+    return `<ul>${res}</ul>`
+}
+
+const cond = (o) => {
+    let res = ''
+    for(let i = 0; i < o.length; i++){
+        res += `<li>${o[i].name}</li>`
     }
     return `<ul>${res}</ul>`
 }
