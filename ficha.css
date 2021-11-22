@@ -10,6 +10,8 @@ body{
     min-width: 100vw;
     padding: 0;
     margin: 0;
+
+    overflow-x: hidden;
 }
 
 nav{
@@ -38,10 +40,10 @@ h1{
 
 .ficha{
 
-    margin-top: 20px;
+    margin: 20px;
     box-sizing: border-box;
 
-    width: clamp(360px, 500px, 90%);
+    width: clamp(360px, 700px, 90%);
 
     box-shadow: 1px 1px 20px rgba(123, 121, 121, 0.652);
 
