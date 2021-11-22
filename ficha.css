@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+
+nav{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+nav > *{
+    width: 30%;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    flex-direction: wrap;
+    flex-wrap: wrap;
+}
+
+h1{
+    text-align: center;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 48px;
+}
+
+.ficha{
+
+    margin-top: 20px;
+    box-sizing: border-box;
+
+    width: clamp(360px, 500px, 90%);
+
+    box-shadow: 1px 1px 20px rgba(123, 121, 121, 0.652);
+
+    padding: 30px;
+
+    font-family: 'Noto Serif', serif;
+}
+
+.combat-area, .special-abilities, .actions, .proficiencies, .speed{
+    font-size: 32px;
+    font-family: 'MedievalSharp', cursive;
+}
+
+
+ul{
+    background-color: rgba(233, 233, 233, 0.707);
+    width: auto;
+    padding: 30px;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+    font-family: 'Noto Serif', serif;
+}
+
+ul > *{
+    list-style: none;
+    margin: 5px;
+}
+
+hr{
+    border-color: rgba(243, 241, 241, 0.446);
+}
+
+dl{
+    font-family: 'MedievalSharp', cursive;
+    font-size: 28px;
+}
+
+ul dl{
+    padding-top: 15px;
+    border-top: 1px solid rgba(196, 196, 196, 0.741);
+}
+
+ul dl:first-child{
+    border: none;
+}
+
+dd{
+    font-family: 'Noto Serif', serif;
+}
+
+.name{
+    font-size: 38px;
+    font-family: 'MedievalSharp', cursive;
+    margin-bottom: -10px;
+}
+
+table{
+    border-collapse: collapse;
+    border: 1px solid rgba(196, 196, 196, 0.741);
+    width: 100%;
+}
+
+td{
+    flex-direction: row;
+    text-align: center;
+    border: 1px solid rgba(196, 196, 196, 0.741);
+    height: 50px;
+}
