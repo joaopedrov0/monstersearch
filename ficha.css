@@ -12,6 +12,9 @@ body{
     margin: 0;
 
     overflow-x: hidden;
+
+    background-image: url('background.jpg');
+    background-attachment: fixed;
 }
 
 nav{
@@ -23,6 +26,10 @@ nav > *{
     width: 30%;
     height: 50px;
     box-sizing: border-box;
+    border: none;
+
+    box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.3),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.3);
 }
 
 section{
@@ -50,6 +57,8 @@ h1{
     padding: 30px;
 
     font-family: 'Noto Serif', serif;
+
+    background-color: white;
 }
 
 .combat-area, .special-abilities, .actions, .proficiencies, .speed{

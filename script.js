@@ -1,6 +1,3 @@
-setTimeout(() => {generateMonsterList()}, 5000)
-
-
 let test
 // Gerar Listas
 
