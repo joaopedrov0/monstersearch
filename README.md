@@ -6,7 +6,7 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/joaopedrov0/monstersearch?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/joaopedrov0/monstersearch?style=for-the-badge)
 
-<img src="exemplo-image.png" alt="exemplo imagem">
+<img src="monstersearch-exemplo.png" alt="exemplo imagem">
 
 > Selecione o monstro desejado e clique em "Generate" para gerar a ficha dele.
 ### Ajustes e melhorias
