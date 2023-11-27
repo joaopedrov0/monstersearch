@@ -4,32 +4,46 @@
 body{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     min-height: 100vh;
-    min-width: 100vw;
+    width: 100vw;
     padding: 0;
     margin: 0;
 
     overflow-x: hidden;
 
+    background-color: #353535;
+}
+
+header{
     background-image: url('background.jpg');
     background-attachment: fixed;
+    background-position: center 100%;
+    background-clip: border-box;
+    background-size: cover;
+
+
+    width: 100vw;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    border-radius: 0 0 30px 30px;
 }
 
 nav{
     width: 90%;
     display: flex;
     justify-content: space-between;
+    margin: 50px;
 }
 nav > *{
     width: 30%;
     height: 50px;
     box-sizing: border-box;
     border: none;
-
-    box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.3),
-    inset -5px -5px 15px rgba(0, 0, 0, 0.3);
 }
 
 section{
@@ -47,30 +61,30 @@ h1{
 
 .ficha{
 
-    margin: 20px;
+    margin: 10px;
     box-sizing: border-box;
 
     width: clamp(360px, 700px, 90%);
 
-    box-shadow: 1px 1px 20px rgba(123, 121, 121, 0.652);
+    color: darkgray;
 
     padding: 30px;
 
     font-family: 'Noto Serif', serif;
 
-    background-color: white;
+    background-color: #444444;
 }
 
 .combat-area, .special-abilities, .actions, .proficiencies, .speed{
-    font-size: 32px;
-    font-family: 'MedievalSharp', cursive;
+    font-size: 18px;
+    font-family: 'Noto Serif', serif;
 }
 
 
 ul{
-    background-color: rgba(233, 233, 233, 0.707);
+    background-color: rgba(41, 41, 41, 0.707);
     width: auto;
-    padding: 30px;
+    padding: 10px;
 
     border-radius: 10px;
 
@@ -89,7 +103,8 @@ hr{
 
 dl{
     font-family: 'MedievalSharp', cursive;
-    font-size: 28px;
+    font-size: 21px;
+    font-weight: bold;
 }
 
 ul dl{
@@ -121,5 +136,31 @@ td{
     flex-direction: row;
     text-align: center;
     border: 1px solid rgba(196, 196, 196, 0.741);
-    height: 50px;
+    height: 30px;
+}
+
+
+input, select, button{
+    background-color: #444444;
+    color: darkgrey;
+    padding: 5px;
+    border-radius: 3px;
+
+
+    transition: all 200ms ease;
+}
+
+select:hover{
+    cursor: pointer;
+}
+
+button:hover{
+    color: #444444;
+    background-color: darkgrey;
+    cursor: pointer;
+}
+
+
+.capitalize{
+    text-transform: capitalize;
 }

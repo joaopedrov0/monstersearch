@@ -5,7 +5,7 @@ let test
         let challengeRating = document.querySelector('#dificulty')
         let challengeURL = ''
         if(challengeRating.value){
-            challengeURL = '?challenge_rating=' + challengeRating
+            challengeURL = '?challenge_rating=' + challengeRating.value
         }
 
         let request = new XMLHttpRequest()
@@ -16,6 +16,7 @@ let test
 
         request.onload = () => {
             console.log('Request loaded')
+            console.log(request.response.results)
             generateList(request.response.results)
         }
     }
@@ -48,6 +49,7 @@ let test
 
     const generateMonster = (monster) => {
         test = monster
+        console.log(monster)
         let container = document.querySelector('section')
         container.innerHTML = `<div class="ficha">
         <div class="describe">
@@ -56,8 +58,8 @@ let test
             <small>Subtype: ${monster.subtype}</small>
         </div>
         <div class="vitality">
-            <div class="life">HP: ${monster.hit_points} &nbsp; (${monster.hit_points})</div>
-            <div class="armor">CA: ${monster.armor_class}</div>
+            <div class="life">HP: ${monster.hit_points} &nbsp; (${monster.hit_points_roll})</div>
+            <div class="armor">CA: ${monster.armor_class[0].value}</div>
         </div>
         <div class="speed">
             Speed:
@@ -85,26 +87,20 @@ let test
         <hr>
         <div class="addicional">
             <div class="proficiencies">
-                Proficiencies:
+                <b>Proficiencies:</b>
                 ${prof(monster.proficiencies)}
             </div>
-            <hr>
             <div class="combat-area">
-                <div class="vulnerabilities">Vulnerabilities: ${list(monster.damage_vulnerabilities)}</div>
-                <hr>
-                <div class="resistences">Resistenses: ${list(monster.damage_resistances)}</div>
-                <hr>
-                <div class="damage-immunities">Damage Immunities: ${list(monster.damage_immunities)}</div>
-                <hr>
-                <div class="condition_immunities">Condition Immunities: ${cond(monster.condition_immunities)}</div>
-                <hr>
-                <div class="senses">Senses: ${obj(monster.senses)}</div>
-                <hr>
-                <div class="lang">Languages: ${monster.languages}</div>
+                ${excludeNull(monster, list, "damage_vulnerabilities")}
+                ${excludeNull(monster, list, "damage_resistances")}
+                ${excludeNull(monster, list, "damage_immunities")}
+                ${excludeNull(monster, cond, "condition_immunities")}
+                ${excludeNull(monster, obj, "senses")}
+                <div class="lang"><b>Languages:</b> ${monster.languages}</div>
                 
-                <div class="challenge">Challenge Rating: ${monster.challenge_rating}</div>
+                <div class="challenge"><b>Challenge Rating:</b> ${monster.challenge_rating}</div>
                 
-                <div class="xp">XP: ${monster.xp}</div>
+                <div class="xp"><b>XP:</b> ${monster.xp}</div>
             </div>
             <hr>
             <div class="special-abilities">
@@ -115,29 +111,54 @@ let test
             <div class="actions">
             Actions:
                 ${desc(monster.actions)}
+            ${legendary(monster)}
             </div>
         </div>
     </div>`.replace('undefined', '') + container.innerHTML
     }
 
-
-
-
-
-const list = (arr) => {
-    let res = ''
-    arr.map((item) => {
-        res += `<li>${item}</li>`
-    })
-    return `<ul>${res}</ul>`
+function excludeNull(monster, orderFunction, spec){
+    if(Object.keys(monster[spec]).length > 0 && monster[spec] !== null) {
+        console.log(monster[spec], spec)
+        return `
+    <hr>
+    <div class="capitalize ${spec}"><b>${spec.replace('_', ' ')}:</b> ${orderFunction(monster[spec])}</div>
+    `
+    } else {
+        return ''
+    }
 }
 
+
+
+// const list = (arr) => {
+//     let res = ''
+//     arr.map((item) => {
+//         res += `<li>${item}</li>`
+//     })
+//     return `<ul>${res}</ul>`
+// }
+
+const list = (arr) => {
+    return `<span>${arr.join(', ')}</span>`
+}
+
+// const obj = (o) => {
+//     let res = ''
+//     for(let prop in o){
+//         res += `<li>${prop}: ${o[prop]}</li>`
+//     }
+//     return `<ul>${res}</ul>`
+// }
+
 const obj = (o) => {
-    let res = ''
+    let res = []
     for(let prop in o){
-        res += `<li>${prop}: ${o[prop]}</li>`
+        // res += `<li>${prop}: ${o[prop]}</li>`
+        res.push(`${prop}: ${o[prop]}`)
     }
-    return `<ul>${res}</ul>`
+    temp = list(res)
+    return temp
 }
 
 const detObj = (o) => {
@@ -161,18 +182,43 @@ const desc = (array) => {
     return `<ul>${res}</ul>`
 }
 
+// const prof = (o) => {
+//     let res = ''
+//     for(let i = 0; i < o.length; i++){
+//         res += `<li>${o[i].proficiency.name}</li>`
+//     }
+//     return `<ul>${res}</ul>`
+// }
+
 const prof = (o) => {
-    let res = ''
+    let res = []
     for(let i = 0; i < o.length; i++){
-        res += `<li>${o[i].proficiency.name}</li>`
+        res.push(`${o[i].proficiency.name}+${o[i].value}`)
     }
-    return `<ul>${res}</ul>`
+    return list(res)
 }
 
+// const cond = (o) => {
+//     let res = ''
+//     for(let i = 0; i < o.length; i++){
+//         res += `<li>${o[i].name}</li>`
+//     }
+//     return `<ul>${res}</ul>`
+// }
+
 const cond = (o) => {
-    let res = ''
+    let res = []
     for(let i = 0; i < o.length; i++){
-        res += `<li>${o[i].name}</li>`
+        res.push(o[i].name)
     }
-    return `<ul>${res}</ul>`
+    return list(res)
+}
+
+
+function legendary(monster){
+    if(monster.legendary_actions.length > 0){
+        return `Legendary Actions: ${desc(monster.legendary_actions)}`
+    } else {
+        return ' '
+    }
 }
