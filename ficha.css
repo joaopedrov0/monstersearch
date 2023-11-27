@@ -73,7 +73,22 @@ h1{
     font-family: 'Noto Serif', serif;
 
     background-color: #444444;
+    
+    overflow: hidden;
+
+    transform: all 200ms ease;
 }
+
+.ficha.reduced{
+    height: 200px;
+}
+
+.ficha.reduced p.name{
+    padding: 20px;
+    margin: 40px;
+}
+
+
 
 .combat-area, .special-abilities, .actions, .proficiencies, .speed{
     font-size: 18px;
@@ -163,4 +178,12 @@ button:hover{
 
 .capitalize{
     text-transform: capitalize;
+}
+
+@media screen and (max-width: 960px){
+    .ficha.reduced p.name{
+        font-size: 28px;
+        padding: 15px;
+        padding-bottom: 40px;
+    }
 }

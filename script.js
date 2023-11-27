@@ -51,7 +51,7 @@ let test
         test = monster
         console.log(monster)
         let container = document.querySelector('section')
-        container.innerHTML = `<div class="ficha">
+        container.innerHTML = `<div class="ficha reduced" id="${monster.index}" onclick="toggleFocus('${monster.index}')">
         <div class="describe">
             <p class="name">${monster.name}</p>
             <small>${monster.size} ${monster.type}, ${monster.alignment}</small>
@@ -177,7 +177,12 @@ const detObj = (o) => {
 const desc = (array) => {
     let res = ''
     for (let index = 0; index < array.length; index++) {
-        res += `<dl>${array[index].name}</dl><dd>${array[index].desc}</dd>`
+        if (array[index].name == "Legendary Resistance"){
+            res += `<dl>${array[index].name} (${array[index].usage.times} ${array[index].usage.type})</dl><dd>${array[index].desc}</dd>`
+        } else {
+            res += `<dl>${array[index].name}</dl><dd>${array[index].desc}</dd>`
+        }
+        
     }
     return `<ul>${res}</ul>`
 }
